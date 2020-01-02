@@ -4,6 +4,7 @@ You will take a baseline installation of a Linux distribution on a virtual machi
 # Server Instance:
 ##	Public IP Address: 3.91.54.23
 ##	SSH in: `ssh -i ~/<privateKey file> grader@3.91.54.23 -p 2200` (`ssh -i ~/.ssh/linuxCourse grader@3.91.54.23 -p 2200`)
+## View website at: http://3.91.54.23/catalog/ or http://3.91.54.23/
 
 # Completion Steps:
 ##	Start a new Ubuntu Server instance on Amazon Lightsail by following the steps listed under Udacity instructions.
