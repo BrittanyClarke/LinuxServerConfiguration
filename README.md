@@ -43,7 +43,7 @@ You will take a baseline installation of a Linux distribution on a virtual machi
 ##	Quit the shell with `\q` and exit postgres shell with `exit`
 ##	Install Git with `sudo apt-get install git`
 ##	Make FlaskApp directory and clone the github repository here with `sudo git clone <repository url>` (`sudo git clone https://github.com/BrittanyClarke/ItemCatalog.git`)
-##	Move project.py to __init__.py by using `sudo mv project.py __init__.py`
+##	Rename project.py to __init__.py
 ##	Update engine in database_setup.py, __init__.py, & populate_database.py by setting `engine = create_engine('postgresql://catalog:password@localhost/catalog')` in the files
 ##	Install pip and dependencies with the following commands:
  ###	sudo apt-get install python-pip --upgrade
@@ -57,9 +57,38 @@ You will take a baseline installation of a Linux distribution on a virtual machi
  ###	sudo -H pip install flask-seasurf --upgrade
 #	Install psycopg2 with `sudo apt-get install postgresql python-psycopg2`
 #	Create database schema with `sudo python database_setup.py`
-# Create a file named "FlaskApp.conf" and configure the virtual host `sudo nano /etc/apache2/sites-available/FlaskApp.conf`
-#	Create .wsgi file in the newly-created /FlaskApp/ directory with `sudo nano flaskapp.wsgi` (refer to file for code)
-#	Add creation script to flaskapp.wsgi (refer to file for script)
+# Create a file named "FlaskApp.conf" and configure the virtual host `sudo nano /etc/apache2/sites-available/FlaskApp.conf`. Add the following code:
+## FlaskApp.conf:
+  `<VirtualHost *:80>
+        ServerName 3.91.54.23
+        ServerAdmin admin@3.91.54.23
+        WSGIDaemonProcess myapp python-path=/var/www/FlaskApp/FlaskApp
+        WSGIScriptAlias / /var/www/FlaskApp/flaskapp.wsgi process-group=myapp application-group=%{GLOBAL}
+        <Directory /var/www/FlaskApp/FlaskApp/>
+                Order allow,deny
+                Allow from all
+        </Directory>
+        Alias /static /var/www/FlaskApp/FlaskApp/static
+        <Directory /var/www/FlaskApp/FlaskApp/static/>
+                Order allow,deny
+                Allow from all
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>`
+#	Create .wsgi file in the newly-created /FlaskApp/ directory with `sudo nano flaskapp.wsgi`. Add the following code:
+ ## flaskapp.wsgi:
+   `#!/usr/bin/python
+   import sys
+   import site
+   import logging
+   logging.basicConfig(stream=sys.stderr)
+   sys.path.insert(0,"/var/www/FlaskApp/")
+
+   from FlaskApp import app as application
+   application.secret_key = 'super_secret_key'
+   #	Add creation script to flaskapp.wsgi (refer to file for script)`
 
 # Sources used: 
 ## https://www.knownhost.com/wiki/security/misc/how-can-i-change-my-ssh-port
