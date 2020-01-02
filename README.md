@@ -1,11 +1,11 @@
 # LinuxServerConfiguration
 You will take a baseline installation of a Linux distribution on a virtual machine and prepare it to host your web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
-Server Instance:
+# Server Instance:
 ##	Public IP Address: 3.91.54.23
 ##	SSH in: `ssh -i ~/<privateKey file> grader@3.91.54.23 -p 2200` (`ssh -i ~/.ssh/linuxCourse grader@3.91.54.23 -p 2200`)
 
-Completion Steps:
+# Completion Steps:
 ##	Start a new Ubuntu Server instance on Amazon Lightsail by following the steps listed under Udacity instructions.
 ##	SSH into the server by logging into Amazon Lightsail and then logging into the instance by clicking “Connect using SSH”
 ## Update all packages with `sudo apt-get update` command
