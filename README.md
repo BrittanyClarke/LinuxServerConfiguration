@@ -87,8 +87,7 @@ You will take a baseline installation of a Linux distribution on a virtual machi
    sys.path.insert(0,"/var/www/FlaskApp/")
 
    from FlaskApp import app as application
-   application.secret_key = 'super_secret_key'
-   #	Add creation script to flaskapp.wsgi (refer to file for script)`
+   application.secret_key = 'super_secret_key'`
 
 # Sources used: 
 ## https://www.knownhost.com/wiki/security/misc/how-can-i-change-my-ssh-port
